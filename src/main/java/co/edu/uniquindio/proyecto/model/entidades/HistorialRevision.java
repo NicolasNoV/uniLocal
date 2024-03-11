@@ -1,8 +1,7 @@
-package co.edu.uniquindio.proyecto.model;
+package co.edu.uniquindio.proyecto.model.entidades;
 
-import co.edu.uniquindio.proyecto.enums.EstadoNegocio;
+import co.edu.uniquindio.proyecto.model.enums.EstadoNegocio;
 import lombok.*;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyecto.model;
+package co.edu.uniquindio.proyecto.model.entidades;
 
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
