@@ -1,14 +1,14 @@
 package co.edu.uniquindio.proyecto.servicios.implementaciones;
 
-import co.edu.uniquindio.proyecto.dto.ActualizarClienteDTO;
-import co.edu.uniquindio.proyecto.dto.CambioPasswordDTO;
-import co.edu.uniquindio.proyecto.dto.InicioSesionDTO;
-import co.edu.uniquindio.proyecto.dto.RegistroClienteDTO;
+import co.edu.uniquindio.proyecto.dto.*;
 import co.edu.uniquindio.proyecto.model.documentos.Cliente;
 import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
 import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
 import co.edu.uniquindio.proyecto.servicios.interfaces.ClienteServicio;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ClienteServicioImp implements ClienteServicio {
@@ -69,7 +69,7 @@ public class ClienteServicioImp implements ClienteServicio {
             throw new Exception("Escriba un correo electronico valido");
         }
         //Asunto, Cuerpo Mensaje, Para
-        enviarCorreoElectronico("Cambio contraseña - Unilocal", "Para cambiar su contraseña acceda al link que está a continuación: link", correoElectronico);
+        //enviarCorreoElectronico("Cambio contraseña - Unilocal", "Para cambiar su contraseña acceda al link que está a continuación: link", correoElectronico);
     }
 
     @Override
@@ -81,6 +81,46 @@ public class ClienteServicioImp implements ClienteServicio {
     public void iniciarSesion(InicioSesionDTO inicioSesionDTO) throws Exception {
 
     }
+
+    @Override
+    public DetalleClienteDTO obtenerCliente(String id) throws Exception {
+
+
+        Optional<Cliente> optionalCliente = clienteRepo.findById(id);
+
+        if(optionalCliente.isEmpty()){
+
+            throw new Exception("el id no existe");
+
+
+
+        }
+
+        Cliente cliente =optionalCliente.get();
+
+        return new DetalleClienteDTO(cliente.getCodigo(),
+                cliente.getNombre(),
+                cliente.getFotoPerfil(),
+                cliente.getNickname(),
+                cliente.getEmail(),
+                cliente.getCiudad());
+
+
+
+    }
+
+    @Override
+    public List<ItemClienteDTO> listarClientes(int pagina) throws Exception {
+
+        List<Cliente> clientes = clienteRepo.finByEstado(EstadoRegistro.ACTIVO);
+
+        return clientes.stream().filter(c ->c.getEstado()==EstadoRegistro.ACTIVO ).map(c -> new ItemClienteDTO(c.getCodigo(),
+                c.getNombre(),
+                c.getFotoPerfil(),
+                c.getNickname(),
+                c.getCiudad())).toList();
+    }
+
     private boolean existeEmail(String correo) {
         return clienteRepo.findByCorreoElectronico(correo) != null;
     }
