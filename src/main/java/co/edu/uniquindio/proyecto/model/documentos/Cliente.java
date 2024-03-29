@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.List;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
@@ -24,5 +25,7 @@ public class Cliente extends Cuenta implements Serializable {
     private String ciudad;
     private String correoElectronico;
     private String password;
+    List<Negocio> favoritos;
+    List<String> historialBusqueda;
 
 }

@@ -2,17 +2,22 @@ package co.edu.uniquindio.proyecto.servicios.implementaciones;
 
 import co.edu.uniquindio.proyecto.dto.*;
 import co.edu.uniquindio.proyecto.model.documentos.Cliente;
+import co.edu.uniquindio.proyecto.model.documentos.Negocio;
 import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
 import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
+import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
 import co.edu.uniquindio.proyecto.servicios.interfaces.ClienteServicio;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-public class ClienteServicioImp implements ClienteServicio {
+@Service
+public class ClienteServicioImpl implements ClienteServicio {
     private ClienteRepo clienteRepo;
+    private EmailServicioImpl emailServicio;
+    private NegocioRepo negocioRepo;
+    private NegocioServicioImpl negocioServicio;
+
     @Override
     public String registrarse(RegistroClienteDTO registroClienteDTO) throws Exception {
         if(existeEmail(registroClienteDTO.correoElectronico())){
@@ -65,11 +70,14 @@ public class ClienteServicioImp implements ClienteServicio {
     @Override
     public void enviarLinkRecuperacion(String correoElectronico) throws Exception {
         Cliente cliente = clienteRepo.findByCorreoElectronico(correoElectronico);
+
         if(cliente == null){
             throw new Exception("Escriba un correo electronico valido");
         }
-        //Asunto, Cuerpo Mensaje, Para
-        //enviarCorreoElectronico("Cambio contraseña - Unilocal", "Para cambiar su contraseña acceda al link que está a continuación: link", correoElectronico);
+
+        emailServicio.enviarCorreo(new EmailDTO("Cambio contraseña - Unilocal",
+                "Para cambiar su contraseña acceda al link que está a continuación: link",
+                correoElectronico));
     }
 
     @Override
@@ -85,15 +93,10 @@ public class ClienteServicioImp implements ClienteServicio {
     @Override
     public DetalleClienteDTO obtenerCliente(String id) throws Exception {
 
-
         Optional<Cliente> optionalCliente = clienteRepo.findById(id);
 
         if(optionalCliente.isEmpty()){
-
             throw new Exception("el id no existe");
-
-
-
         }
 
         Cliente cliente =optionalCliente.get();
@@ -104,9 +107,6 @@ public class ClienteServicioImp implements ClienteServicio {
                 cliente.getNickname(),
                 cliente.getEmail(),
                 cliente.getCiudad());
-
-
-
     }
 
     @Override
@@ -119,6 +119,64 @@ public class ClienteServicioImp implements ClienteServicio {
                 c.getFotoPerfil(),
                 c.getNickname(),
                 c.getCiudad())).toList();
+    }
+
+    @Override
+    public void agregarNegocioFavoritos(FavoritoDTO favoritoDTO) throws Exception {
+        Optional<Cliente> optionalCliente = clienteRepo.findById(favoritoDTO.codigoCliente());
+        Optional<Negocio> optionalNegocio = negocioRepo.findById(favoritoDTO.codigoNegocio());
+        if(optionalCliente.isEmpty()){throw new Exception("El id del cliente no existe");
+        }else if(optionalNegocio.isEmpty()){ throw new Exception("El id del negocio no existe"); }
+
+        Cliente cliente = optionalCliente.get();
+        Negocio negocio = optionalNegocio.get();
+
+        cliente.getFavoritos().add(negocio);
+
+        clienteRepo.save(cliente);
+    }
+
+    @Override
+    public void quitarNegocioFavoritos(FavoritoDTO favoritoDTO) throws Exception {
+        Optional<Cliente> optionalCliente = clienteRepo.findById(favoritoDTO.codigoCliente());
+        Optional<Negocio> optionalNegocio = negocioRepo.findById(favoritoDTO.codigoNegocio());
+        if(optionalCliente.isEmpty()){throw new Exception("El id del cliente no existe");
+        }else if(optionalNegocio.isEmpty()){ throw new Exception("El id del negocio no existe"); }
+
+        Cliente cliente = optionalCliente.get();
+        Negocio negocio = optionalNegocio.get();
+
+        cliente.getFavoritos().remove(negocio);
+
+        clienteRepo.save(cliente);
+    }
+
+    @Override
+    public List<NegocioEncontradoDTO> recomendarNegocioBusqueda(String codigoUsuario) throws Exception {
+        Optional<Cliente> clienteOptional = clienteRepo.findById(codigoUsuario);
+        Cliente cliente = clienteOptional.get();
+
+        Map<String, Integer> frecuencia = new HashMap<>();
+
+        // Calcular la frecuencia de cada elemento en la lista de búsqueda
+        for (String item : cliente.getHistorialBusqueda()) {
+            frecuencia.put(item, frecuencia.getOrDefault(item, 0) + 1);
+        }
+
+        // Ordenar los elementos por frecuencia (de mayor a menor)
+        List<Map.Entry<String, Integer>> listaOrdenada = new ArrayList<>(frecuencia.entrySet());
+        listaOrdenada.sort((a, b) -> b.getValue().compareTo(a.getValue()));
+
+        // Obtener las recomendaciones basadas en los elementos más frecuentes
+        List<NegocioEncontradoDTO> listaRecomendaciones = new ArrayList<>();
+        int maxRecomendaciones = 5; // Número máximo de la prioridad de la busqueda
+        for (int i = 0; i < Math.min(maxRecomendaciones, listaOrdenada.size()); i++) {
+            List<NegocioEncontradoDTO> recomendacionesAux = negocioServicio.buscarNeogocios(listaOrdenada.get(i).getValue());
+            for(int j = 0; j < 3; j++){
+                listaRecomendaciones.add(recomendacionesAux.get(j));
+            }
+        }
+        return listaRecomendaciones;
     }
 
     private boolean existeEmail(String correo) {
