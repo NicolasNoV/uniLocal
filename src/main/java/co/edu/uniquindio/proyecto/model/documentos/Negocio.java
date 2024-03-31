@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.model.documentos;
 import co.edu.uniquindio.proyecto.model.entidades.HistorialRevision;
 import co.edu.uniquindio.proyecto.model.entidades.Horario;
 import co.edu.uniquindio.proyecto.model.entidades.Ubicacion;
+import co.edu.uniquindio.proyecto.model.enums.EstadoNegocio;
 import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
 import co.edu.uniquindio.proyecto.model.enums.TipoNegocio;
 import lombok.*;
@@ -27,11 +28,13 @@ public class Negocio implements Serializable {
     private EstadoRegistro estadoRegistro;
     private List<String> imagenes;
     private List<HistorialRevision> historialRevisiones;
+    private EstadoNegocio estadoNegocio;
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
     private String codigoCliente;
     private TipoNegocio tipoNegocio;
     private List<String> telefonos;
+
 
 }

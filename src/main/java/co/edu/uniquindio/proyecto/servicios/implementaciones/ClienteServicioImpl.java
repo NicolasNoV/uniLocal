@@ -171,7 +171,7 @@ public class ClienteServicioImpl implements ClienteServicio {
         List<NegocioEncontradoDTO> listaRecomendaciones = new ArrayList<>();
         int maxRecomendaciones = 5; // Número máximo de la prioridad de la busqueda
         for (int i = 0; i < Math.min(maxRecomendaciones, listaOrdenada.size()); i++) {
-            List<NegocioEncontradoDTO> recomendacionesAux = negocioServicio.buscarNeogocios(listaOrdenada.get(i).getValue());
+            List<NegocioEncontradoDTO> recomendacionesAux = negocioServicio.buscarNeogocios(listaOrdenada.get(i).getKey());
             for(int j = 0; j < 3; j++){
                 listaRecomendaciones.add(recomendacionesAux.get(j));
             }
