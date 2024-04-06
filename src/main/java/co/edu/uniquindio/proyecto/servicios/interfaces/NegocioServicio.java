@@ -15,5 +15,5 @@ public interface NegocioServicio {
     List<NegocioEncontradoDTO> listarNegociosPropietario(String nombrePropietario) throws Exception;
     void cambiarEstado(CambiarEstadoDTO cambiarEstadoDTO) throws Exception;
     void registrarRevision(HistorialRevisionDTO historialRevisionDTO) throws Exception;
-    
+
 }

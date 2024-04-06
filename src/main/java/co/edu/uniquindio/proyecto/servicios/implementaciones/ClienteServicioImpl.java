@@ -7,6 +7,7 @@ import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
 import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
 import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
 import co.edu.uniquindio.proyecto.servicios.interfaces.ClienteServicio;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -26,11 +27,12 @@ public class ClienteServicioImpl implements ClienteServicio {
         if(existeNickname(registroClienteDTO.nickname())){
             throw new Exception("El nickname ya está en uso por otra persona");
         }
-
         Cliente cliente = new Cliente();
         cliente.setNombre(registroClienteDTO.nombre());
         cliente.setCorreoElectronico(registroClienteDTO.correoElectronico());
-        cliente.setPassword(registroClienteDTO.password());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncriptada = passwordEncoder.encode( registroClienteDTO.password());
+        cliente.setPassword(passwordEncriptada);
         cliente.setFotoPerfil(registroClienteDTO.fotoPerfil());
         cliente.setNickname(registroClienteDTO.nickname());
         cliente.setCiudad(registroClienteDTO.ciudad());
