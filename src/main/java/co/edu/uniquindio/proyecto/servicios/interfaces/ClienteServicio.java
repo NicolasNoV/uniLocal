@@ -12,7 +12,6 @@ public interface ClienteServicio {
     void eliminarCuenta(String idCliente)throws Exception;
     void enviarLinkRecuperacion(String correoElectronico)throws Exception;
     void recuperarPassword(CambioPasswordDTO cambioPasswordDTO)throws Exception;
-    void iniciarSesion(InicioSesionDTO inicioSesionDTO)throws Exception;
     DetalleClienteDTO obtenerCliente(String id)throws Exception;
     List<ItemClienteDTO> listarClientes(int pagina)throws Exception;
     void agregarNegocioFavoritos(FavoritoDTO favoritoDTO) throws Exception;

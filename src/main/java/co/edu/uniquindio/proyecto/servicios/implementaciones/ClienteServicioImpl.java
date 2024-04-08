@@ -62,7 +62,6 @@ public class ClienteServicioImpl implements ClienteServicio {
         Optional<Cliente> clienteOptional = clienteRepo.findById(idCliente);
         if(clienteOptional.isEmpty()){
             throw new Exception(("no existe un cliente con el id" + idCliente));
-
         }
         Cliente cliente = clienteOptional.get();
         cliente.setEstado (EstadoRegistro.INACTIVO);
@@ -76,6 +75,9 @@ public class ClienteServicioImpl implements ClienteServicio {
         if(cliente == null){
             throw new Exception("Escriba un correo electronico valido");
         }
+        if(cliente.getEstado().equals(EstadoRegistro.INACTIVO)){
+            throw new Exception("La cuenta asociada a este correo se encuentra inactiva");
+        }
 
         emailServicio.enviarCorreo(new EmailDTO("Cambio contraseña - Unilocal",
                 "Para cambiar su contraseña acceda al link que está a continuación: link",
@@ -88,17 +90,15 @@ public class ClienteServicioImpl implements ClienteServicio {
     }
 
     @Override
-    public void iniciarSesion(InicioSesionDTO inicioSesionDTO) throws Exception {
-
-    }
-
-    @Override
     public DetalleClienteDTO obtenerCliente(String id) throws Exception {
 
         Optional<Cliente> optionalCliente = clienteRepo.findById(id);
 
         if(optionalCliente.isEmpty()){
             throw new Exception("el id no existe");
+        }
+        if(optionalCliente.get().getEstado().equals(EstadoRegistro.INACTIVO)){
+            throw new Exception("La cuenta asociada a este id se encuentra inactiva");
         }
 
         Cliente cliente =optionalCliente.get();
@@ -129,7 +129,9 @@ public class ClienteServicioImpl implements ClienteServicio {
         Optional<Negocio> optionalNegocio = negocioRepo.findById(favoritoDTO.codigoNegocio());
         if(optionalCliente.isEmpty()){throw new Exception("El id del cliente no existe");
         }else if(optionalNegocio.isEmpty()){ throw new Exception("El id del negocio no existe"); }
-
+        if(optionalNegocio.get().getEstadoRegistro().equals(EstadoRegistro.INACTIVO)){
+            throw new Exception("La negocio asociado a este id se encuentra inactivo");
+        }
         Cliente cliente = optionalCliente.get();
         Negocio negocio = optionalNegocio.get();
 
@@ -144,7 +146,9 @@ public class ClienteServicioImpl implements ClienteServicio {
         Optional<Negocio> optionalNegocio = negocioRepo.findById(favoritoDTO.codigoNegocio());
         if(optionalCliente.isEmpty()){throw new Exception("El id del cliente no existe");
         }else if(optionalNegocio.isEmpty()){ throw new Exception("El id del negocio no existe"); }
-
+        if(optionalNegocio.get().getEstadoRegistro().equals(EstadoRegistro.INACTIVO)){
+            throw new Exception("La negocio asociado a este id se encuentra inactivo");
+        }
         Cliente cliente = optionalCliente.get();
         Negocio negocio = optionalNegocio.get();
 

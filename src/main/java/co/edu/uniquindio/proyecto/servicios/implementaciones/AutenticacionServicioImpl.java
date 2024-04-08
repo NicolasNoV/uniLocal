@@ -4,6 +4,7 @@ import co.edu.uniquindio.proyecto.dto.LoginDTO;
 import co.edu.uniquindio.proyecto.dto.TokenDTO;
 import co.edu.uniquindio.proyecto.model.documentos.Cliente;
 import co.edu.uniquindio.proyecto.model.documentos.Moderador;
+import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
 import co.edu.uniquindio.proyecto.repositorios.AdminRepo;
 import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
 import co.edu.uniquindio.proyecto.servicios.interfaces.AutenticacionServicio;
@@ -30,6 +31,9 @@ import java.util.Optional;
             if (clienteOptional.isEmpty()) {
                 throw new Exception("El correo no se encuentra registrado");
             }
+            if(clienteOptional.get().getEstado().equals(EstadoRegistro.INACTIVO)){
+                throw new Exception("La cuenta asociada a este correo se encuentra inactiva");
+            }
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             Cliente cliente = clienteOptional.get();
             if (!passwordEncoder.matches(loginDTO.password(), cliente.getPassword())) {
@@ -47,6 +51,9 @@ import java.util.Optional;
             Optional<Moderador> moderadorOptional = Optional.ofNullable(adminRepo.findByCorreoElectronico(loginDTO.correoElectronico()));
             if (moderadorOptional.isEmpty()) {
                 throw new Exception("El correo no se esncuentra registrado");
+            }
+            if(moderadorOptional.get().getEstado().equals(EstadoRegistro.INACTIVO)){
+                throw new Exception("La cuenta asociada a este correo se encuentra inactiva");
             }
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             Moderador moderador = moderadorOptional.get();
