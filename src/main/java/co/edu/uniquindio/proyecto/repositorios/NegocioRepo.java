@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface NegocioRepo extends MongoRepository<Negocio, String> {
 
-    List<Negocio> findAllByNombre(String nombre);
+    List<Negocio> findAllByNombreContainingIgnoreCase(String nombre);
     List<Negocio> findAllByTipoNegocio(TipoNegocio tipoNegocio);
     List<Negocio> findAllByCodigoCliente(String codigoCliente);
 

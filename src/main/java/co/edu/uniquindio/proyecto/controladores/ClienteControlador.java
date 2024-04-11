@@ -31,15 +31,12 @@ public class ClienteControlador {
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "Cuenta eliminada correctamente"));
     }
 
+    @PutMapping("/cambiar-password")
     public ResponseEntity<MensajeDTO<String>> recuperarPassword(@Valid @RequestBody CambioPasswordDTO cambioPasswordDTO)throws Exception{
         clienteServicio.recuperarPassword(cambioPasswordDTO);
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "Se ha cambiado la password correctamente"));
     }
 
-    public ResponseEntity<MensajeDTO<String>> iniciarSesion(@Valid @RequestBody InicioSesionDTO inicioSesionDTO)throws Exception{
-        clienteServicio.iniciarSesion(inicioSesionDTO);
-        return ResponseEntity.ok().body( new MensajeDTO<>(false, "Se ha iniciado sesión correctamente"));
-    }
     @GetMapping("/obtener-cliente/{id}")
     public ResponseEntity<MensajeDTO<DetalleClienteDTO>> obtenerCliente(@PathVariable String id)throws Exception{
         return ResponseEntity.ok().body( new MensajeDTO<>(false, clienteServicio.obtenerCliente(id) ) );

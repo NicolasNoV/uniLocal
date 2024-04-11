@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.aggregation.ComparisonOperators;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +51,7 @@ public class NegocioServicioImpl implements NegocioServicio {
         negocio.setHistorialRevisiones(historial);
 
         negocioRepo.save(negocio);
+
     }
 
     @Override
@@ -80,6 +82,7 @@ public class NegocioServicioImpl implements NegocioServicio {
         negocio.setTelefonos(actualizarNegocioDTO.telefonos());
 
         negocioRepo.save(negocio);
+
     }
 
     @Override
@@ -95,7 +98,7 @@ public class NegocioServicioImpl implements NegocioServicio {
 
     @Override
     public List<NegocioEncontradoDTO> buscarNeogocios(String busqueda) throws Exception{
-        List<Negocio> negocioNombre = negocioRepo.findAllByNombre(busqueda);
+        List<Negocio> negocioNombre = negocioRepo.findAllByNombreContainingIgnoreCase(busqueda);
         if(negocioNombre.isEmpty()){throw new Exception("No se han encontrado negocios");}
 
         List<NegocioEncontradoDTO> listaBusqueda = crearListaBusqueda(negocioNombre,"Nombre");
@@ -105,10 +108,12 @@ public class NegocioServicioImpl implements NegocioServicio {
             List<Negocio> negocioTipo = negocioRepo.findAllByTipoNegocio(tipoNegocio);
             listaBusqueda.addAll(crearListaBusqueda(negocioTipo,"TipoNegocio"));
         }
+        eliminarNegocioXTiempo();
         return listaBusqueda;
+
     }
 
-    public List<NegocioEncontradoDTO> crearListaBusqueda(List<Negocio> negocios, String tipoBusqueda){
+    public List<NegocioEncontradoDTO> crearListaBusqueda(List<Negocio> negocios, String tipoBusqueda) throws Exception{
         List<NegocioEncontradoDTO> listaBusqueda = new ArrayList<>();
         for(Negocio negocio : negocios){
             List<HorarioDTO> horarios = new ArrayList<>();
@@ -128,6 +133,7 @@ public class NegocioServicioImpl implements NegocioServicio {
                     negocio.getTelefonos(),
                     tipoBusqueda));
         }
+        eliminarNegocioXTiempo();
         return listaBusqueda;
     }
 
@@ -156,6 +162,7 @@ public class NegocioServicioImpl implements NegocioServicio {
                 negociosAux.add(negocio);
             }
         }
+        eliminarNegocioXTiempo();
         return crearListaBusqueda(negociosAux,"Filtrado");
     }
 
@@ -163,6 +170,7 @@ public class NegocioServicioImpl implements NegocioServicio {
     public List<NegocioEncontradoDTO> listarNegociosPropietario(String codigoCliente) throws Exception{
         List<Negocio> negocios = negocioRepo.findAllByCodigoCliente(codigoCliente);
         if(negocios.isEmpty()){throw new Exception("No se han encontrado negocios");}
+        eliminarNegocioXTiempo();
         return crearListaBusqueda(negocios,"ListarPropietario");
     }
 
@@ -192,6 +200,29 @@ public class NegocioServicioImpl implements NegocioServicio {
         negocio.getHistorialRevisiones().add(historialRevision);
         negocioRepo.save(negocio);
 
+    }
+
+    public void eliminarNegocioXTiempo() throws Exception{
+        List<Negocio> negocios = negocioRepo.findAll();
+        if(negocios.isEmpty()){
+            throw new Exception("No hay negocios");
+        }
+
+        LocalDateTime fechaHoraActual = LocalDateTime.now();
+        for (Negocio negocio: negocios) {
+            int ultimaRevision = negocio.getHistorialRevisiones().size()-1;
+            if(!(ultimaRevision < 0)){
+                LocalDateTime dateTime = negocio.getHistorialRevisiones().get(ultimaRevision).getFecha();
+
+                // Calcular la diferencia de días entre la fecha y hora dada y la fecha y hora actual
+                long diasDiferencia = ChronoUnit.DAYS.between(dateTime, fechaHoraActual);
+
+                if(diasDiferencia >= 5){
+                    negocio.setEstadoRegistro(EstadoRegistro.INACTIVO);
+                    negocioRepo.save(negocio);
+            }
+            }
+        }
     }
 
 }

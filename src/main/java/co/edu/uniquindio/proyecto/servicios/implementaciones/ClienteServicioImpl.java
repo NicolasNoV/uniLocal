@@ -7,17 +7,21 @@ import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
 import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
 import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
 import co.edu.uniquindio.proyecto.servicios.interfaces.ClienteServicio;
+import co.edu.uniquindio.proyecto.utils.JWTUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class ClienteServicioImpl implements ClienteServicio {
-    private ClienteRepo clienteRepo;
-    private EmailServicioImpl emailServicio;
-    private NegocioRepo negocioRepo;
-    private NegocioServicioImpl negocioServicio;
+    private final ClienteRepo clienteRepo;
+    private final EmailServicioImpl emailServicio;
+    private final NegocioRepo negocioRepo;
+    private final NegocioServicioImpl negocioServicio;
+    private final JWTUtils jwtUtils;
 
     @Override
     public String registrarse(RegistroClienteDTO registroClienteDTO) throws Exception {
@@ -72,6 +76,8 @@ public class ClienteServicioImpl implements ClienteServicio {
     public void enviarLinkRecuperacion(String correoElectronico) throws Exception {
         Cliente cliente = clienteRepo.findByCorreoElectronico(correoElectronico);
 
+        String tokenEmail = jwtUtils.generarToken(correoElectronico, null);
+
         if(cliente == null){
             throw new Exception("Escriba un correo electronico valido");
         }
@@ -80,12 +86,24 @@ public class ClienteServicioImpl implements ClienteServicio {
         }
 
         emailServicio.enviarCorreo(new EmailDTO("Cambio contraseña - Unilocal",
-                "Para cambiar su contraseña acceda al link que está a continuación: link",
+                "Para cambiar su contraseña acceda al link que está a continuación: link"+tokenEmail,
                 correoElectronico));
     }
 
     @Override
     public void recuperarPassword(CambioPasswordDTO cambioPasswordDTO) throws Exception {
+
+        Optional<Cliente> optionalCliente = clienteRepo.findById(cambioPasswordDTO.id());
+
+        if(optionalCliente.isEmpty()){
+            throw new Exception("El id no existe");
+        }
+
+        jwtUtils.parseJwt(cambioPasswordDTO.token() );
+
+        Cliente cliente = optionalCliente.get();
+        cliente.setPassword( new BCryptPasswordEncoder().encode( cambioPasswordDTO.nuevaPassword() ) );
+        clienteRepo.save(cliente);
 
     }
 
