@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.model.documentos;
 
 import co.edu.uniquindio.proyecto.model.entidades.HistorialRevision;
 import co.edu.uniquindio.proyecto.model.entidades.Horario;
+import co.edu.uniquindio.proyecto.model.entidades.Oferta;
 import co.edu.uniquindio.proyecto.model.entidades.Ubicacion;
 import co.edu.uniquindio.proyecto.model.enums.EstadoNegocio;
 import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
@@ -35,6 +36,6 @@ public class Negocio implements Serializable {
     private String codigoCliente;
     private TipoNegocio tipoNegocio;
     private List<String> telefonos;
-
+    private List<Oferta> ofertas;
 
 }

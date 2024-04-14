@@ -12,6 +12,7 @@ import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
 import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
 import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
 import co.edu.uniquindio.proyecto.servicios.interfaces.ComentarioServicio;
+import lombok.RequiredArgsConstructor;
 import org.eclipse.angus.mail.handlers.text_html;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -20,12 +21,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ComentarioServicioImpl implements ComentarioServicio {
 
-    private ComentarioRepo comentarioRepo;
-    private NegocioRepo negocioRepo;
-    private ClienteRepo clienteRepo;
-    private EmailServicioImpl emailServicio;
+    private final ComentarioRepo comentarioRepo;
+    private final NegocioRepo negocioRepo;
+    private final ClienteRepo clienteRepo;
+    private final EmailServicioImpl emailServicio;
 
     @Override
     public void crearComentario(CrearComentarioDTO crearComentarioDTO) throws Exception{

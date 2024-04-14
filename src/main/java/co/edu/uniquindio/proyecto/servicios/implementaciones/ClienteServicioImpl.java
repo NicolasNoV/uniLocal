@@ -4,6 +4,7 @@ import co.edu.uniquindio.proyecto.dto.*;
 import co.edu.uniquindio.proyecto.model.documentos.Cliente;
 import co.edu.uniquindio.proyecto.model.documentos.Negocio;
 import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
+import co.edu.uniquindio.proyecto.model.enums.TipoNegocio;
 import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
 import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
 import co.edu.uniquindio.proyecto.servicios.interfaces.ClienteServicio;
@@ -68,7 +69,7 @@ public class ClienteServicioImpl implements ClienteServicio {
             throw new Exception(("no existe un cliente con el id" + idCliente));
         }
         Cliente cliente = clienteOptional.get();
-        cliente.setEstado (EstadoRegistro.INACTIVO);
+        cliente.setEstado(EstadoRegistro.INACTIVO);
         clienteRepo.save(cliente);
     }
 
@@ -183,8 +184,12 @@ public class ClienteServicioImpl implements ClienteServicio {
         Map<String, Integer> frecuencia = new HashMap<>();
 
         // Calcular la frecuencia de cada elemento en la lista de búsqueda
-        for (String item : cliente.getHistorialBusqueda()) {
+        for (String item : cliente.getHistorialBusquedaNombre()) {
             frecuencia.put(item, frecuencia.getOrDefault(item, 0) + 1);
+        }
+        for (TipoNegocio tipoNegocio : cliente.getHistorialBusquedaTipo()){
+            String tipoNegocioAux = tipoNegocio.toString();
+            frecuencia.put(tipoNegocioAux, frecuencia.getOrDefault(tipoNegocioAux, 0) + 1);
         }
 
         // Ordenar los elementos por frecuencia (de mayor a menor)
@@ -195,9 +200,10 @@ public class ClienteServicioImpl implements ClienteServicio {
         List<NegocioEncontradoDTO> listaRecomendaciones = new ArrayList<>();
         int maxRecomendaciones = 5; // Número máximo de la prioridad de la busqueda
         for (int i = 0; i < Math.min(maxRecomendaciones, listaOrdenada.size()); i++) {
-            List<NegocioEncontradoDTO> recomendacionesAux = negocioServicio.buscarNeogocios(listaOrdenada.get(i).getKey());
-            for(int j = 0; j < 3; j++){
-                listaRecomendaciones.add(recomendacionesAux.get(j));
+            List<NegocioEncontradoDTO> recomendacionesAux = negocioServicio.buscarNeogocios( new BuscarNegocioDTO( listaOrdenada.get(i).getKey(), null, codigoUsuario));
+            if(recomendacionesAux.size() < 5){throw new Exception("No hay recomendaciones disponibles");
+            } else{
+                listaRecomendaciones.add(recomendacionesAux.get(i));
             }
         }
         return listaRecomendaciones;
