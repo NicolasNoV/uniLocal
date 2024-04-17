@@ -7,7 +7,6 @@ public record EnviarMensajeChatDTO(
         String codigoChat,
         @NotBlank
         String mensaje,
-
         @NotBlank
         String codigoRemitente) {
 }

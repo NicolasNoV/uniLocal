@@ -5,33 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a02f3c3-4e31-4115-bef5-e1173b7d1f9e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ModeradorControlador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/SinRolControlador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/BuscarNegocioDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/CrearChatDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/CrearOfertaDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/EnviarMensajeChatDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/model/documentos/Chat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/model/entidades/Mensaje.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/model/entidades/Oferta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/repositorios/ChatRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ChatServicioImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/ChatServicio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ChatTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ComentarioTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/NegocioTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/AutenticacionControlador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ClienteControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ClienteControlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ComentarioControlador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/EmailControlador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ImagenesControlador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/NegocioControlador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/model/documentos/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/model/documentos/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/model/documentos/Negocio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/model/documentos/Negocio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ClienteServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ClienteServicioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ComentarioServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ComentarioServicioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ImagenesServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ImagenesServicioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/NegocioServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/NegocioServicioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/ModeradorServicio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/NegocioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/NegocioServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/EnviarMensajeChatDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/EnviarMensajeChatDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ClienteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ClienteTest.java" afterDir="false" />
     </list>
     <list id="02e750c3-d123-493d-98eb-f44f7c0c6aa1" name="Changes by Steven" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,6 +72,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Pc/IdeaProjects/uniLocal",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -103,6 +84,11 @@
     "project.structure.side.proportion": "0.2",
     "spring.configuration.checksum": "a9e8015650089b6131914db6e8e39ec5",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mongo"
+    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -113,6 +99,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -144,6 +138,9 @@
       <workItem from="1712617700603" duration="1970000" />
       <workItem from="1712848579105" duration="1741000" />
       <workItem from="1713118916848" duration="4777000" />
+      <workItem from="1713194256868" duration="265000" />
+      <workItem from="1713373729661" duration="419000" />
+      <workItem from="1713375048896" duration="10871000" />
     </task>
     <servers />
   </component>
