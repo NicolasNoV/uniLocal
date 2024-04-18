@@ -83,7 +83,7 @@ public class ClienteControlador {
         return ResponseEntity.ok().body( new MensajeDTO<>(false, imagenesServicio.eliminarImagen(idImagen) ) );
     }
     @PostMapping("/crear-negocio")
-    public ResponseEntity<MensajeDTO<String>> editarPerfil(@Valid @RequestBody NegocioDTO negocioDTO) throws Exception {
+    public ResponseEntity<MensajeDTO<String>> crearNegocio(@Valid @RequestBody NegocioDTO negocioDTO) throws Exception {
         negocioServicio.crearNegocio(negocioDTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Negocio creado correctamente"));
     }

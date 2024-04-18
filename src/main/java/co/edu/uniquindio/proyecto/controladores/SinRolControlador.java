@@ -21,11 +21,11 @@ public class SinRolControlador {
     private final ComentarioServicio comentarioServicio;
 
     @PostMapping("/iniciar-sesion-cliente")
-    public ResponseEntity<MensajeDTO<TokenDTO>> iniciarSesionCliente(LoginDTO loginDTO) throws Exception{
+    public ResponseEntity<MensajeDTO<TokenDTO>> iniciarSesionCliente(@Valid @RequestBody LoginDTO loginDTO) throws Exception{
         return ResponseEntity.ok().body( new MensajeDTO<>(false, autenticacionServicio.iniciarSesionCliente(loginDTO) ) );
     }
     @PostMapping("/iniciar-sesion-admin")
-    public ResponseEntity<MensajeDTO<TokenDTO>> iniciarSesionAdmin(LoginDTO loginDTO) throws Exception{
+    public ResponseEntity<MensajeDTO<TokenDTO>> iniciarSesionAdmin(@Valid @RequestBody LoginDTO loginDTO) throws Exception{
         return ResponseEntity.ok().body( new MensajeDTO<>(false, autenticacionServicio.iniciarSesionAdmin(loginDTO) ) );
     }
     @PostMapping("/registrarse")

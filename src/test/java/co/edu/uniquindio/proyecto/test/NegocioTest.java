@@ -159,7 +159,7 @@ public class NegocioTest {
         ));
 
         Optional<Negocio> negocio = negocioRepo.findById("001");
-        
+
         assertNotNull(negocio.get().getOfertas().get(0));
     }
 

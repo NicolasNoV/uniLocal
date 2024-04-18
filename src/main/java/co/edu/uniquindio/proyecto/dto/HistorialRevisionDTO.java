@@ -10,7 +10,6 @@ public record HistorialRevisionDTO(
 
         @NotBlank String descripcion,
         @NotNull EstadoNegocio estadoNegocio,
-        @NotNull LocalDateTime fecha,
         @NotBlank String codigoModerador,
         @NotBlank String codigoNegocio
 ) {
