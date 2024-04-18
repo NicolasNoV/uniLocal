@@ -5,6 +5,7 @@ import co.edu.uniquindio.proyecto.model.documentos.Cliente;
 import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
 import co.edu.uniquindio.proyecto.repositorios.ClienteRepo;
 import co.edu.uniquindio.proyecto.servicios.implementaciones.ClienteServicioImpl;
+import co.edu.uniquindio.proyecto.servicios.interfaces.ClienteServicio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +18,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ClienteTest {
     @Autowired
     private ClienteRepo clienteRepo;
-    private ClienteServicioImpl clienteServicio;
+    @Autowired
+    private ClienteServicio clienteServicio;
+
+
+
 
     @Test
     public void testRegistrarse() throws Exception{

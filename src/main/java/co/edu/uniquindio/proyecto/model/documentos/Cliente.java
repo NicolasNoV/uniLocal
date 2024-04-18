@@ -25,7 +25,6 @@ public class Cliente extends Cuenta implements Serializable {
     private String nickname;
     private String ciudad;
     private String correoElectronico;
-    private String password;
     List<Negocio> favoritos;
     List<String> historialBusquedaNombre;
     List<TipoNegocio> historialBusquedaTipo;

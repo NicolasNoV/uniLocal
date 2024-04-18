@@ -48,7 +48,7 @@ import java.util.Optional;
 
         @Override
         public TokenDTO iniciarSesionAdmin(LoginDTO loginDTO) throws Exception {
-            Optional<Moderador> moderadorOptional = Optional.ofNullable(adminRepo.findByCorreoElectronico(loginDTO.correoElectronico()));
+            Optional<Moderador> moderadorOptional = Optional.ofNullable(adminRepo.findByEmail(loginDTO.correoElectronico()));
             if (moderadorOptional.isEmpty()) {
                 throw new Exception("El correo no se esncuentra registrado");
             }

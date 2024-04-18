@@ -6,6 +6,7 @@ import co.edu.uniquindio.proyecto.model.documentos.Chat;
 import co.edu.uniquindio.proyecto.model.entidades.Mensaje;
 import co.edu.uniquindio.proyecto.repositorios.ChatRepo;
 import co.edu.uniquindio.proyecto.servicios.implementaciones.ChatServicioImpl;
+import co.edu.uniquindio.proyecto.servicios.interfaces.ChatServicio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ChatTest {
     @Autowired
     private ChatRepo chatRepo;
-    private ChatServicioImpl chatServicio;
+    @Autowired
+    private ChatServicio chatServicio;
 
     @Test
     public void testCrearChat() throws Exception{

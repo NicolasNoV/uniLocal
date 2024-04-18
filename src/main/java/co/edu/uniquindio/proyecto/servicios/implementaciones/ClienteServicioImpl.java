@@ -133,7 +133,7 @@ public class ClienteServicioImpl implements ClienteServicio {
     @Override
     public List<ItemClienteDTO> listarClientes(int pagina) throws Exception {
 
-        List<Cliente> clientes = clienteRepo.finByEstado(EstadoRegistro.ACTIVO);
+        List<Cliente> clientes = clienteRepo.findByEstado(EstadoRegistro.ACTIVO);
 
         return clientes.stream().filter(c ->c.getEstado()==EstadoRegistro.ACTIVO ).map(c -> new ItemClienteDTO(c.getCodigo(),
                 c.getNombre(),

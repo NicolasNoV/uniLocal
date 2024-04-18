@@ -7,6 +7,7 @@ import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
 import co.edu.uniquindio.proyecto.model.enums.TipoNegocio;
 import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
 import co.edu.uniquindio.proyecto.servicios.implementaciones.NegocioServicioImpl;
+import co.edu.uniquindio.proyecto.servicios.interfaces.NegocioServicio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class NegocioTest {
     @Autowired
     private NegocioRepo negocioRepo;
-    private NegocioServicioImpl negocioServicio;
+    @Autowired
+    private NegocioServicio negocioServicio;
 
     @Test
     void testCrearNegocio() throws Exception{
@@ -138,7 +140,6 @@ public class NegocioTest {
         negocioServicio.registrarRevision(new HistorialRevisionDTO(
                 "El negocio no cumple con los estandares de esta plataforma",
                 EstadoNegocio.RECHAZADO,
-                LocalDateTime.now(),
                 "001",
                 "003"
         ));

@@ -7,6 +7,7 @@ import co.edu.uniquindio.proyecto.model.documentos.Comentario;
 import co.edu.uniquindio.proyecto.model.entidades.Mensaje;
 import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
 import co.edu.uniquindio.proyecto.servicios.implementaciones.ComentarioServicioImpl;
+import co.edu.uniquindio.proyecto.servicios.interfaces.ComentarioServicio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ComentarioTest {
     @Autowired
     private ComentarioRepo comentarioRepo;
-    private ComentarioServicioImpl comentarioServicio;
+    @Autowired
+    private ComentarioServicio comentarioServicio;
 
     @Test
     public void testCrearComentario() throws Exception{
