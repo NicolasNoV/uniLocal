@@ -1,10 +1,13 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.dto.*;
+import co.edu.uniquindio.proyecto.model.documentos.Moderador;
 import co.edu.uniquindio.proyecto.model.documentos.Negocio;
+import co.edu.uniquindio.proyecto.model.entidades.Oferta;
 import co.edu.uniquindio.proyecto.model.enums.EstadoNegocio;
 import co.edu.uniquindio.proyecto.model.enums.EstadoRegistro;
 import co.edu.uniquindio.proyecto.model.enums.TipoNegocio;
+import co.edu.uniquindio.proyecto.repositorios.AdminRepo;
 import co.edu.uniquindio.proyecto.repositorios.NegocioRepo;
 import co.edu.uniquindio.proyecto.servicios.implementaciones.NegocioServicioImpl;
 import co.edu.uniquindio.proyecto.servicios.interfaces.NegocioServicio;
@@ -18,8 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class NegocioTest {
@@ -45,19 +47,17 @@ public class NegocioTest {
         NegocioDTO negocioDTO = new NegocioDTO(
                 0,
                 0,
-                "Mejor Cafeteria Mundo",
-                "La mejor cafeteria que te puedas encontrar :)",
+                "CAFETERIA5",
+                "La quinta mejor cafeteria que te puedas encontrar :)",
                 horarios,
                 imagenes,
-                "001",
+                "66218c9c9f2f010eb3d51536",
                 TipoNegocio.CAFETERIA,
                 telefones);
 
-        negocioServicio.crearNegocio(negocioDTO);
+        boolean bandera = negocioServicio.crearNegocio(negocioDTO);
 
-        Optional<Negocio> negocio = negocioRepo.findById("001");
-
-        assertNotNull(negocio);
+        assertTrue(bandera);
     }
 
     @Test
@@ -75,14 +75,14 @@ public class NegocioTest {
         telefones.add("1234");
 
         ActualizarNegocioDTO actualizarNegocioDTO= new ActualizarNegocioDTO(
-                "001",
+                "66218e5cb3180d00bbe622a6",
                 0,
                 0,
                 "Mejor Cafeteria",
                 "La mejor cafeteria que te puedas encontrar :)",
                 horarios,
                 imagenes,
-                "001",
+                "66214328ea0311058f71b83c",
                 TipoNegocio.CAFETERIA,
                 telefones);
 
@@ -95,8 +95,8 @@ public class NegocioTest {
 
     @Test
     void testEliminarNegocio() throws Exception{
-        negocioServicio.eliminarNegocio("001");
-        Optional<Negocio> negocio = negocioRepo.findById("001");
+        negocioServicio.eliminarNegocio("662192fa250edd2ac301d76a");
+        Optional<Negocio> negocio = negocioRepo.findById("662192fa250edd2ac301d76a");
         assertEquals(EstadoRegistro.INACTIVO,negocio.get().getEstadoRegistro());
     }
 
@@ -105,7 +105,7 @@ public class NegocioTest {
         List<NegocioEncontradoDTO> negocioEncontrado = negocioServicio.buscarNeogocios(new BuscarNegocioDTO(
                 "Mejor Cafeteria",
                 TipoNegocio.CAFETERIA,
-                "001"
+                "66218c9c9f2f010eb3d51536"
         ));
 
         assertNotNull(negocioEncontrado);
@@ -119,51 +119,49 @@ public class NegocioTest {
 
     @Test
     public void testListarNegociosPropietario() throws Exception{
-        List<NegocioEncontradoDTO> negocioEncontrado = negocioServicio.listarNegociosPropietario("001");
+        List<NegocioEncontradoDTO> negocioEncontrado = negocioServicio.listarNegociosPropietario("66214328ea0311058f71b83c");
         assertNotNull(negocioEncontrado);
     }
 
     @Test
     public void testCambiarEstado() throws Exception{
         negocioServicio.cambiarEstado(new CambiarEstadoDTO(
-                "002",
+                "66218e5cb3180d00bbe622a6",
                 EstadoNegocio.APROBADO
         ));
 
-        Optional<Negocio> negocio = negocioRepo.findById("002");
+        Optional<Negocio> negocio = negocioRepo.findById("66218e5cb3180d00bbe622a6");
 
         assertEquals(EstadoNegocio.APROBADO,negocio.get().getEstadoNegocio());
     }
 
     @Test
-    public void testRegistrarRevision(HistorialRevisionDTO historialRevisionDTO) throws Exception{
+    public void testRegistrarRevision() throws Exception{
         negocioServicio.registrarRevision(new HistorialRevisionDTO(
                 "El negocio no cumple con los estandares de esta plataforma",
                 EstadoNegocio.RECHAZADO,
-                "001",
-                "003"
+                "1",
+                "662191c12884cf2ff0e50c89"
         ));
 
-        Optional<Negocio> negocio = negocioRepo.findById("003");
+        Optional<Negocio> negocio = negocioRepo.findById("662191c12884cf2ff0e50c89");
 
         assertEquals(EstadoNegocio.RECHAZADO,negocio.get().getHistorialRevisiones().get(0).getEstadoNegocio());
     }
 
     @Test
-    void testCrearOferta(CrearOfertaDTO crearOfertaDTO) throws Exception{
+    void testCrearOferta() throws Exception{
         negocioServicio.crearOferta(new CrearOfertaDTO(
                 10,
-                "001",
+                "66218e5cb3180d00bbe622a6",
                 "Un descuento del 10% en shampoo",
                 LocalDateTime.of(2024,04,17,2,0,0),
                 LocalDateTime.of(2024,04,17,7,0,0)
         ));
 
-        Optional<Negocio> negocio = negocioRepo.findById("001");
+        Optional<Negocio> negocio = negocioRepo.findById("66218e5cb3180d00bbe622a6");
 
         assertNotNull(negocio.get().getOfertas().get(0));
     }
-
-
 
 }

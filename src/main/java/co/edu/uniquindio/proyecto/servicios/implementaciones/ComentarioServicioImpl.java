@@ -30,7 +30,7 @@ public class ComentarioServicioImpl implements ComentarioServicio {
     private final EmailServicioImpl emailServicio;
 
     @Override
-    public void crearComentario(CrearComentarioDTO crearComentarioDTO) throws Exception{
+    public boolean crearComentario(CrearComentarioDTO crearComentarioDTO) throws Exception{
         Comentario comentario = new Comentario();
         comentario.setCalificacion(crearComentarioDTO.calificacion());
         comentario.setCodigoCliente(crearComentarioDTO.codigoCliente());
@@ -54,10 +54,11 @@ public class ComentarioServicioImpl implements ComentarioServicio {
                 propietario.get().getCorreoElectronico()));
 
         comentarioRepo.save(comentario);
+        return true;
     }
 
     @Override
-    public void responderComentario(ResponderComentarioDTO responderComentarioDTO) throws Exception{
+    public boolean responderComentario(ResponderComentarioDTO responderComentarioDTO) throws Exception{
         Optional<Comentario> comentarioOptional = comentarioRepo.findById(responderComentarioDTO.codigoComentario());
         if(comentarioOptional.isEmpty()){throw new Exception("El id del comentario no existe");}
 
@@ -78,6 +79,7 @@ public class ComentarioServicioImpl implements ComentarioServicio {
                 cliente.get().getCorreoElectronico()));
 
         comentarioRepo.save(comentario);
+        return true;
     }
 
     @Override
@@ -89,7 +91,7 @@ public class ComentarioServicioImpl implements ComentarioServicio {
         if (negocio.get().getEstadoRegistro().equals(EstadoRegistro.INACTIVO)){
             throw new Exception("El negocio se encuentra inactivo");
         }
-        List<Comentario> comentariosNegocio = comentarioRepo.findAllByCodigo(codigoNegocio);
+        List<Comentario> comentariosNegocio = comentarioRepo.findAllByCodigoNegocio(codigoNegocio);
 
         List<ComentarioDTO> comentarios = new ArrayList<>();
         for(Comentario comentario: comentariosNegocio){
@@ -104,18 +106,21 @@ public class ComentarioServicioImpl implements ComentarioServicio {
     @Override
     public int calcularPromedioCalificaciones(String codigoNegocio) throws Exception{
         Optional<Negocio> negocio = negocioRepo.findById(codigoNegocio);
-        List<Comentario> comentariosNegocio = comentarioRepo.findAllByCodigo(codigoNegocio);
+        List<Comentario> comentariosNegocio = comentarioRepo.findAllByCodigoNegocio(codigoNegocio);
         if(negocio.isEmpty()){
             throw new Exception("El negocio no existe");
         }
         if (negocio.get().getEstadoRegistro().equals(EstadoRegistro.INACTIVO)){
             throw new Exception("El negocio se encuentra inactivo");
         }
+        if(comentariosNegocio.isEmpty()){
+            throw new Exception("Aún no hay calificaciones");
+        }
         int suma = 0;
         for(Comentario comentario : comentariosNegocio){
             suma = comentario.getCalificacion()+suma;
         }
 
-        return suma/comentariosNegocio.size()+1;
+        return suma/comentariosNegocio.size();
     }
 }

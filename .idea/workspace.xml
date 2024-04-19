@@ -6,14 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="0a02f3c3-4e31-4115-bef5-e1173b7d1f9e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/model/documentos/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/model/documentos/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/repositorios/AdminRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/repositorios/AdminRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/repositorios/ClienteRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/repositorios/ClienteRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ClienteControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ClienteControlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ModeradorControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ModeradorControlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/ActualizarNegocioDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/ActualizarNegocioDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/CrearComentarioDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/CrearComentarioDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/NegocioDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/NegocioDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/repositorios/ComentarioRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/repositorios/ComentarioRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/repositorios/NegocioRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/repositorios/NegocioRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/AutenticacionServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/AutenticacionServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ChatServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ChatServicioImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ClienteServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ClienteServicioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ComentarioServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ComentarioServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/NegocioServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/NegocioServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/ChatServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/ChatServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/ComentarioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/ComentarioServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/NegocioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/NegocioServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ChatTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ChatTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ClienteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ClienteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ComentarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/proyecto/test/ComentarioTest.java" afterDir="false" />
@@ -97,8 +102,8 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Gradle.ClienteTest.testRegistrarse">
-    <configuration name="ClienteTest.testRegistrarse" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Spring Boot.ProyectoApplication">
+    <configuration name="ClienteTest.testEditarAdmins" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -111,7 +116,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.proyecto.test.ClienteTest.testRegistrarse&quot;" />
+            <option value="&quot;co.edu.uniquindio.proyecto.test.ClienteTest.testEditarAdmins&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -122,7 +127,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="NegocioTest.testRegistrarRevision" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ClienteTest.testRecomendarNegocioBusqueda" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -135,7 +140,79 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.proyecto.test.NegocioTest.testRegistrarRevision&quot;" />
+            <option value="&quot;co.edu.uniquindio.proyecto.test.ClienteTest.testRecomendarNegocioBusqueda&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="NegocioTest.testAgregarOferta" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;co.edu.uniquindio.proyecto.test.NegocioTest.testAgregarOferta&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="NegocioTest.testCrearModerador" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;co.edu.uniquindio.proyecto.test.NegocioTest.testCrearModerador&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="NegocioTest.testCrearOferta" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;co.edu.uniquindio.proyecto.test.NegocioTest.testCrearOferta&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -166,8 +243,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ClienteTest.testRegistrarse" />
-        <item itemvalue="Gradle.NegocioTest.testRegistrarRevision" />
+        <item itemvalue="Gradle.ClienteTest.testEditarAdmins" />
+        <item itemvalue="Gradle.ClienteTest.testRecomendarNegocioBusqueda" />
+        <item itemvalue="Gradle.NegocioTest.testCrearOferta" />
+        <item itemvalue="Gradle.NegocioTest.testCrearModerador" />
+        <item itemvalue="Gradle.NegocioTest.testAgregarOferta" />
       </list>
     </recent_temporary>
   </component>
@@ -215,10 +295,33 @@
       <workItem from="1713414353196" duration="5860000" />
       <workItem from="1713449623729" duration="6321000" />
       <workItem from="1713466053648" duration="862000" />
+      <workItem from="1713473674267" duration="20104000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ClienteServicioImpl.java</url>
+          <line>153</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

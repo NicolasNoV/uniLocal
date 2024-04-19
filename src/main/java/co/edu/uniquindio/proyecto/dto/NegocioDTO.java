@@ -7,8 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public record NegocioDTO(
-        @NotBlank double longitud,
-        @NotBlank double latitud,
+        @NotNull double longitud,
+        @NotNull double latitud,
         @NotBlank String nombre,
         @NotBlank String descripcion,
         @NotNull List<HorarioDTO> horarios,

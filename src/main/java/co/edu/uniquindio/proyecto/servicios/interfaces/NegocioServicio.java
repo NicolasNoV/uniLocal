@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface NegocioServicio {
 
-    void crearNegocio(NegocioDTO negocioDTO) throws Exception;
+    boolean crearNegocio(NegocioDTO negocioDTO) throws Exception;
     void actualizarNegocio(ActualizarNegocioDTO actualizarNegocioDTO) throws Exception;
     void eliminarNegocio(String codigoNegocio) throws Exception;
     List<NegocioEncontradoDTO> buscarNeogocios(BuscarNegocioDTO buscarNegocioDTO) throws Exception;

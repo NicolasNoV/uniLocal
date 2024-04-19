@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ChatServicio {
 
-    void crearChat(CrearChatDTO crearChatDTO) throws Exception;
+    boolean crearChat(CrearChatDTO crearChatDTO) throws Exception;
 
     List<Mensaje> enviarMensajeChat(EnviarMensajeChatDTO enviarMensajeChatDTO) throws Exception;
 

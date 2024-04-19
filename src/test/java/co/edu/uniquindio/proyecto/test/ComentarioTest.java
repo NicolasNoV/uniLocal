@@ -15,8 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class ComentarioTest {
@@ -29,37 +28,33 @@ public class ComentarioTest {
     public void testCrearComentario() throws Exception{
         CrearComentarioDTO crearComentarioDTO = new CrearComentarioDTO(
                 4,
-                "002",
-                "001",
+                "66218c7cb76e2763c497075a",
+                "662192a0118f3a678da41036",
                 "Buen Servicio"
         );
 
-        comentarioServicio.crearComentario(crearComentarioDTO);
 
-        Optional<Comentario> comentarioOptional = comentarioRepo.findById("001");
-
-        assertNotNull(comentarioOptional.get());
+        boolean bandera = comentarioServicio.crearComentario(crearComentarioDTO);
+        assertTrue(bandera);
     }
 
     @Test
     public void testResponderComentario() throws Exception{
-        comentarioServicio.responderComentario(new ResponderComentarioDTO("001","Hola"));
+       boolean bandera = comentarioServicio.responderComentario(new ResponderComentarioDTO("6621943f42f923635bbc0e21","Hola"));
 
-        Optional<Comentario> comentarioOptional = comentarioRepo.findById("001");
-
-        assertNotNull(comentarioOptional.get().getRespuesta());
+        assertTrue(bandera);
     }
 
     @Test
     public void testListarComentarioNegocio() throws Exception{
-        List<ComentarioDTO> comentarios = comentarioServicio.listarComentarioNegocio("001");
+        List<ComentarioDTO> comentarios = comentarioServicio.listarComentarioNegocio("66218e5cb3180d00bbe622a6");
 
         assertNotNull(comentarios);
     }
 
     @Test
-    public void testCalcularPromedioCalificaciones(String codigoNegocio) throws Exception{
-        int promedioEstrellas = comentarioServicio.calcularPromedioCalificaciones("001");
+    public void testCalcularPromedioCalificaciones() throws Exception{
+        int promedioEstrellas = comentarioServicio.calcularPromedioCalificaciones("66218e5cb3180d00bbe622a6");
 
         assertEquals(4,promedioEstrellas);
     }

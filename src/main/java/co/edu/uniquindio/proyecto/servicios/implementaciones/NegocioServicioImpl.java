@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.aggregation.ComparisonOperators;
 import org.springframework.stereotype.Service;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -31,8 +32,9 @@ public class NegocioServicioImpl implements NegocioServicio {
     private final ClienteRepo clienteRepo;
 
     @Override
-    public void crearNegocio(NegocioDTO negocioDTO) throws Exception{
+    public boolean crearNegocio(NegocioDTO negocioDTO) throws Exception{
         Ubicacion ubicacion = new Ubicacion(negocioDTO.longitud(), negocioDTO.latitud());
+        List<Oferta> ofertas = new ArrayList<>();
 
         List<Horario> horarios = new ArrayList<>();
         for(int i=0; i<negocioDTO.horarios().size();i++){
@@ -55,9 +57,11 @@ public class NegocioServicioImpl implements NegocioServicio {
         negocio.setTipoNegocio(negocioDTO.tipoNegocio());
         negocio.setTelefonos(negocioDTO.telefonos());
         negocio.setHistorialRevisiones(historial);
+        negocio.setEstadoNegocio(EstadoNegocio.PENDIENTE);
+        negocio.setOfertas(ofertas);
 
-        negocioRepo.save(negocio);
-
+        Negocio negocioCreado = negocioRepo.save(negocio);
+        return true;
     }
 
     @Override
@@ -87,6 +91,7 @@ public class NegocioServicioImpl implements NegocioServicio {
         negocio.setCodigoCliente(actualizarNegocioDTO.codigoCliente());
         negocio.setTipoNegocio(actualizarNegocioDTO.tipoNegocio());
         negocio.setTelefonos(actualizarNegocioDTO.telefonos());
+
 
         negocioRepo.save(negocio);
 
@@ -209,6 +214,7 @@ public class NegocioServicioImpl implements NegocioServicio {
         historialRevision.setFecha(LocalDateTime.now());
         historialRevision.setCodigoModerador(historialRevisionDTO.codigoModerador());
 
+        negocio.setEstadoNegocio(historialRevisionDTO.estadoNegocio());
         negocio.getHistorialRevisiones().add(historialRevision);
         negocioRepo.save(negocio);
 

@@ -9,8 +9,8 @@ import java.util.List;
 public record ActualizarNegocioDTO(
 
         @NotBlank String codigoNegocio,
-        @NotBlank double longitud,
-        @NotBlank double latitud,
+        @NotNull double longitud,
+        @NotNull double latitud,
         @NotBlank String nombre,
         @NotBlank String descripcion,
         @NotNull List<HorarioDTO> horarios,

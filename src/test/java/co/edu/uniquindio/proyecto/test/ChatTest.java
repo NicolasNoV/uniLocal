@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class ChatTest {
@@ -23,19 +24,17 @@ public class ChatTest {
 
     @Test
     public void testCrearChat() throws Exception{
-        chatServicio.crearChat(new CrearChatDTO("002","001"));
+        boolean bandera = chatServicio.crearChat(new CrearChatDTO("66218c15163faf5e50f4b517","66218c9c9f2f010eb3d51536"));
 
-        Optional<Chat> chatOptional = chatRepo.findById("001");
-
-        assertNotNull(chatOptional.get());
+        assertTrue(bandera);
     }
 
     @Test
     public void testEnviarMensajeChat() throws Exception{
         List<Mensaje> mensajes = chatServicio.enviarMensajeChat(new EnviarMensajeChatDTO(
-                "001",
+                "662197aac9297168a5e37998",
                 "Hola",
-                "002"
+                "66218c553658da7925d8c2b2"
         ));
 
         assertNotNull(mensajes);

@@ -26,6 +26,9 @@ public class ClienteServicioImpl implements ClienteServicio {
 
     @Override
     public String registrarse(RegistroClienteDTO registroClienteDTO) throws Exception {
+        List<Negocio> negociosFavorritos = new ArrayList<>();
+        List<String> historialBusquedaNombre = new ArrayList<>();
+        List<TipoNegocio> historialBusquedaTipo = new ArrayList<>();
         if(existeEmail(registroClienteDTO.correoElectronico())){
             throw new Exception("El correo ya está en uso por otra persona");
         }
@@ -42,10 +45,13 @@ public class ClienteServicioImpl implements ClienteServicio {
         cliente.setNickname(registroClienteDTO.nickname());
         cliente.setCiudad(registroClienteDTO.ciudad());
         cliente.setEstado(EstadoRegistro.ACTIVO);
-
+        cliente.setFavoritos(negociosFavorritos);
+        cliente.setHistorialBusquedaNombre(historialBusquedaNombre);
+        cliente.setHistorialBusquedaTipo(historialBusquedaTipo);
         Cliente clienteGuardado = clienteRepo.save(cliente);
         return clienteGuardado.getCodigo();
     }
+
 
     @Override
     public void editarPerfil(ActualizarClienteDTO actualizarClienteDTO) throws Exception {
@@ -126,7 +132,7 @@ public class ClienteServicioImpl implements ClienteServicio {
                 cliente.getNombre(),
                 cliente.getFotoPerfil(),
                 cliente.getNickname(),
-                cliente.getEmail(),
+                cliente.getCorreoElectronico(),
                 cliente.getCiudad());
     }
 
@@ -150,6 +156,12 @@ public class ClienteServicioImpl implements ClienteServicio {
         }else if(optionalNegocio.isEmpty()){ throw new Exception("El id del negocio no existe"); }
         if(optionalNegocio.get().getEstadoRegistro().equals(EstadoRegistro.INACTIVO)){
             throw new Exception("La negocio asociado a este id se encuentra inactivo");
+        }
+        for (Negocio negocio:optionalCliente.get().getFavoritos()) {
+            if(negocio.getCodigo().equals(favoritoDTO.codigoNegocio())){
+                throw new Exception("El negocio ya está en favoritos");
+            }
+
         }
         Cliente cliente = optionalCliente.get();
         Negocio negocio = optionalNegocio.get();
@@ -201,10 +213,11 @@ public class ClienteServicioImpl implements ClienteServicio {
         int maxRecomendaciones = 5; // Número máximo de la prioridad de la busqueda
         for (int i = 0; i < Math.min(maxRecomendaciones, listaOrdenada.size()); i++) {
             List<NegocioEncontradoDTO> recomendacionesAux = negocioServicio.buscarNeogocios( new BuscarNegocioDTO( listaOrdenada.get(i).getKey(), null, codigoUsuario));
-            if(recomendacionesAux.size() < 5){throw new Exception("No hay recomendaciones disponibles");
-            } else{
+            System.out.println(recomendacionesAux.size());
+            if(!(recomendacionesAux.size() < 5)){
                 listaRecomendaciones.add(recomendacionesAux.get(i));
             }
+
         }
         return listaRecomendaciones;
     }

@@ -7,8 +7,8 @@ import co.edu.uniquindio.proyecto.dto.ResponderComentarioDTO;
 import java.util.List;
 
 public interface ComentarioServicio {
-    void crearComentario(CrearComentarioDTO crearComentarioDTO) throws Exception;
-    void responderComentario(ResponderComentarioDTO responderComentarioDTO) throws Exception;
+    boolean crearComentario(CrearComentarioDTO crearComentarioDTO) throws Exception;
+    boolean responderComentario(ResponderComentarioDTO responderComentarioDTO) throws Exception;
     List<ComentarioDTO> listarComentarioNegocio(String codigoNegocio) throws Exception;
     int calcularPromedioCalificaciones(String codigoNegocio) throws Exception;
 }

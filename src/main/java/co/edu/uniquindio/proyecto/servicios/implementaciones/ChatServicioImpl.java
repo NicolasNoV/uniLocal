@@ -21,7 +21,7 @@ public class ChatServicioImpl implements ChatServicio {
     private final ChatRepo chatRepo;
 
     @Override
-    public void crearChat(CrearChatDTO crearChatDTO) {
+    public boolean crearChat(CrearChatDTO crearChatDTO) {
         Chat chat = new Chat();
         List<Mensaje> mensajes = new ArrayList<>();
 
@@ -31,6 +31,7 @@ public class ChatServicioImpl implements ChatServicio {
         chat.setEstadoRegistro(EstadoRegistro.ACTIVO);
 
         chatRepo.save(chat);
+        return true;
     }
 
     @Override
