@@ -266,4 +266,8 @@ public class NegocioServicioImpl implements NegocioServicio {
 
     }
 
+    public TipoNegocio[] listarTipoNegocios() throws Exception {
+        return TipoNegocio.values();
+    }
+
 }

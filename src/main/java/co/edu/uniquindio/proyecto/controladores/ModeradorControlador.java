@@ -23,7 +23,7 @@ public class ModeradorControlador {
     public ResponseEntity<MensajeDTO<List<NegocioEncontradoDTO>>> filtrarPorEstado(@PathVariable EstadoNegocio estadoNegocio)throws Exception{
         return ResponseEntity.ok().body( new MensajeDTO<>(false, negocioServicio.filtrarPorEstado(estadoNegocio)));
     }
-    @GetMapping("/listar-negocios-propietario/{codigoPropietario}")
+    @GetMapping("/listar-negocios-propietario/{nombrePropietario}")
     public ResponseEntity<MensajeDTO<List<NegocioEncontradoDTO>>> listarNegociosPropietario(@PathVariable String nombrePropietario)throws Exception{
         return ResponseEntity.ok().body( new MensajeDTO<>(false, negocioServicio.listarNegociosPropietario(nombrePropietario)));
     }

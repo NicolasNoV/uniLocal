@@ -59,7 +59,7 @@ public class ClienteControlador {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Se ha agregado el negocio a favoritos correctamente"));
     }
 
-    @DeleteMapping("/quitar-negocio-favorito")
+    @PostMapping("/quitar-negocio-favorito")
     public ResponseEntity<MensajeDTO<String>> quitarNegocioFavoritos(@Valid @RequestBody FavoritoDTO favoritoDTO) throws Exception {
         clienteServicio.quitarNegocioFavoritos(favoritoDTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Se ha quitado el negocio de favoritos correctamente"));
@@ -105,7 +105,7 @@ public class ClienteControlador {
     }
 
     @PutMapping("/actualizar-negocio")
-    public ResponseEntity<MensajeDTO<String>> editarPerfil(@Valid @RequestBody ActualizarNegocioDTO actualizarNegocioDTODTO) throws Exception {
+    public ResponseEntity<MensajeDTO<String>> actualizarNegocio(@Valid @RequestBody ActualizarNegocioDTO actualizarNegocioDTODTO) throws Exception {
         negocioServicio.actualizarNegocio(actualizarNegocioDTODTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Negocio editado correctamente"));
     }
@@ -116,7 +116,7 @@ public class ClienteControlador {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Negocio eliminado correctamente"));
     }
 
-    @GetMapping("/buscar-negocios")
+    @PostMapping("/buscar-negocios")
     public ResponseEntity<MensajeDTO<List<NegocioEncontradoDTO>>> buscarNeogocios(@Valid @RequestBody BuscarNegocioDTO buscarNegocioDTO) throws Exception {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, negocioServicio.buscarNeogocios(buscarNegocioDTO)));
     }

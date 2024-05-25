@@ -1,15 +1,16 @@
 package co.edu.uniquindio.proyecto.controladores;
 
 import co.edu.uniquindio.proyecto.dto.*;
-import co.edu.uniquindio.proyecto.servicios.interfaces.AutenticacionServicio;
-import co.edu.uniquindio.proyecto.servicios.interfaces.ClienteServicio;
-import co.edu.uniquindio.proyecto.servicios.interfaces.ComentarioServicio;
+import co.edu.uniquindio.proyecto.model.enums.TipoNegocio;
+import co.edu.uniquindio.proyecto.servicios.interfaces.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +20,8 @@ public class SinRolControlador {
     private final AutenticacionServicio autenticacionServicio;
     private final ClienteServicio clienteServicio;
     private final ComentarioServicio comentarioServicio;
+    private final NegocioServicio negocioServicio;
+    private final ImagenesServicio imagenesServicio;
 
     @PostMapping("/iniciar-sesion-cliente")
     public ResponseEntity<MensajeDTO<TokenDTO>> iniciarSesionCliente(@Valid @RequestBody LoginDTO loginDTO) throws Exception{
@@ -40,4 +43,17 @@ public class SinRolControlador {
     public ResponseEntity<MensajeDTO<Integer>> calcularPromedioCalificaciones(@PathVariable String codigoNegocio) throws Exception{
         return ResponseEntity.ok().body( new MensajeDTO<>(false, comentarioServicio.calcularPromedioCalificaciones(codigoNegocio) ) );
     }
+    @GetMapping("/listar-tipo-negocio")
+    public ResponseEntity<MensajeDTO<TipoNegocio[]>> listarTipoNegocios() throws Exception{
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, negocioServicio.listarTipoNegocios() ) );
+    }
+    @PutMapping("/subir-imagen")
+    public ResponseEntity<MensajeDTO<Map>> subirImagen(MultipartFile imagen) throws Exception{
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, imagenesServicio.subirImagen(imagen) ) );
+    }
+    @DeleteMapping("/eliminar-imagen")
+    public ResponseEntity<MensajeDTO<Map>> subirImagen(String idImagen) throws Exception{
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, imagenesServicio.eliminarImagen(idImagen) ) );
+    }
+
 }

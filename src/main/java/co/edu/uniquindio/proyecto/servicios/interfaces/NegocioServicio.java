@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.servicios.interfaces;
 
 import co.edu.uniquindio.proyecto.dto.*;
 import co.edu.uniquindio.proyecto.model.enums.EstadoNegocio;
+import co.edu.uniquindio.proyecto.model.enums.TipoNegocio;
 
 import java.util.List;
 
@@ -16,5 +17,5 @@ public interface NegocioServicio {
     void cambiarEstado(CambiarEstadoDTO cambiarEstadoDTO) throws Exception;
     void registrarRevision(HistorialRevisionDTO historialRevisionDTO) throws Exception;
     void crearOferta(CrearOfertaDTO crearOfertaDTO) throws Exception;
-
+    TipoNegocio[] listarTipoNegocios() throws Exception;
 }
