@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a02f3c3-4e31-4115-bef5-e1173b7d1f9e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/ImagenDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/dto/ClienteDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/ProyectoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/ProyectoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ClienteControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ClienteControlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ModeradorControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/ModeradorControlador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/SinRolControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/controladores/SinRolControlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/AutenticacionServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/AutenticacionServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ClienteServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ClienteServicioImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/NegocioServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/NegocioServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/AutenticacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/AutenticacionServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/ClienteServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/ClienteServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/NegocioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/interfaces/NegocioServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <list id="02e750c3-d123-493d-98eb-f44f7c0c6aa1" name="Changes by Steven" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,11 +43,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="uniLocal" type="f1a62948:ProjectNode" />
               </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="uniLocal" type="f1a62948:ProjectNode" />
-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
-              </path>
             </expand>
             <select />
           </tree_state>
@@ -54,8 +55,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Record" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -73,6 +74,8 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Gradle.Build uniLocal.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ClienteTest.testRegistrarse.executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -80,10 +83,11 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ProyectoApplication.executor&quot;: &quot;Run&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pc/IdeaProjects/uniLocal&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nicol/OneDrive/Desktop/Software 3/uniLocal&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -151,7 +155,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="NegocioTest.testAgregarOferta" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ClienteTest.testRegistrarse" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -164,7 +168,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.proyecto.test.NegocioTest.testAgregarOferta&quot;" />
+            <option value="&quot;co.edu.uniquindio.proyecto.test.ClienteTest.testRegistrarse&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -232,19 +236,19 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ClienteTest.testRegistrarse" />
         <item itemvalue="Gradle.ClienteTest.testEditarAdmins" />
         <item itemvalue="Gradle.ClienteTest.testRecomendarNegocioBusqueda" />
         <item itemvalue="Gradle.NegocioTest.testCrearOferta" />
         <item itemvalue="Gradle.NegocioTest.testCrearModerador" />
-        <item itemvalue="Gradle.NegocioTest.testAgregarOferta" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
     </attachedChunks>
   </component>
@@ -288,6 +292,12 @@
       <workItem from="1716524851587" duration="176000" />
       <workItem from="1716525051811" duration="6011000" />
       <workItem from="1716574128852" duration="7050000" />
+      <workItem from="1731268643896" duration="2369000" />
+      <workItem from="1731352057124" duration="8352000" />
+      <workItem from="1731440793156" duration="945000" />
+      <workItem from="1731446309492" duration="4983000" />
+      <workItem from="1731791576050" duration="4039000" />
+      <workItem from="1731863086639" duration="19160000" />
     </task>
     <servers />
   </component>
@@ -304,16 +314,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/proyecto/servicios/implementaciones/ClienteServicioImpl.java</url>
-          <line>165</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

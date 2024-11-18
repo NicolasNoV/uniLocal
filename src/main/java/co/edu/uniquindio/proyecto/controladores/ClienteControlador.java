@@ -25,6 +25,11 @@ public class ClienteControlador {
     private final NegocioServicio negocioServicio;
     private final ChatServicio chatServicio;
 
+    @GetMapping("/cargar-perfil/{codigoCliente}")
+    public ResponseEntity<MensajeDTO<ClienteDTO>> cargarPerfil(@PathVariable String codigoCliente) throws Exception {
+        return ResponseEntity.ok().body( new MensajeDTO<>(false,  clienteServicio.cargarPerfil(codigoCliente) ) );
+    }
+
     @PutMapping("/editar-perfil")
     public ResponseEntity<MensajeDTO<String>> editarPerfil(@Valid @RequestBody ActualizarClienteDTO actualizarClienteDTO) throws Exception {
         clienteServicio.editarPerfil(actualizarClienteDTO);
@@ -134,4 +139,8 @@ public class ClienteControlador {
     public ResponseEntity<MensajeDTO<List<Mensaje>>> enviarMensajeChat(@Valid @RequestBody EnviarMensajeChatDTO enviarMensajeChatDTO  ) throws Exception {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, chatServicio.enviarMensajeChat(enviarMensajeChatDTO)));
     }
+
+
+
+
 }

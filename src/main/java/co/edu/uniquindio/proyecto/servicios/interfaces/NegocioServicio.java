@@ -18,4 +18,5 @@ public interface NegocioServicio {
     void registrarRevision(HistorialRevisionDTO historialRevisionDTO) throws Exception;
     void crearOferta(CrearOfertaDTO crearOfertaDTO) throws Exception;
     TipoNegocio[] listarTipoNegocios() throws Exception;
+
 }

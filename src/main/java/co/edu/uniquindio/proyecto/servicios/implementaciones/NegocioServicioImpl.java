@@ -112,11 +112,7 @@ public class NegocioServicioImpl implements NegocioServicio {
     @Override
     public List<NegocioEncontradoDTO> buscarNeogocios(BuscarNegocioDTO buscarNegocioDTO) throws Exception{
         List<Negocio> negocioNombre = negocioRepo.findAllByNombreContainingIgnoreCase(buscarNegocioDTO.busqueda());
-        Optional<Cliente> clienteOptional = clienteRepo.findById(buscarNegocioDTO.idCliente());
         if(negocioNombre.isEmpty()){throw new Exception("No se han encontrado negocios");}
-        if(clienteOptional.isEmpty()){throw new Exception("No existe un cliente con ese id");}
-
-        clienteOptional.get().getHistorialBusquedaNombre().add(buscarNegocioDTO.busqueda());
 
         List<NegocioEncontradoDTO> listaBusqueda = new ArrayList<>();
         List<NegocioEncontradoDTO> listaBusqueda1 = crearListaBusqueda(negocioNombre,"Nombre");
@@ -130,12 +126,8 @@ public class NegocioServicioImpl implements NegocioServicio {
                     listaBusqueda.add(negocio);
                 }
             }
-            clienteOptional.get().getHistorialBusquedaTipo().add(buscarNegocioDTO.tipoNegocio());
         }else{listaBusqueda = listaBusqueda1;}
 
-        clienteRepo.save(clienteOptional.get());
-
-        eliminarNegocioXTiempo();
         return listaBusqueda;
     }
 

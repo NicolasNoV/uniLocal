@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface ClienteServicio {
-
+    ClienteDTO cargarPerfil(String codigoCliente) throws Exception;
     String registrarse(RegistroClienteDTO registroClienteDTO) throws Exception;
     void editarPerfil(ActualizarClienteDTO actualizarClienteDTO)throws Exception;
     void eliminarCuenta(String idCliente)throws Exception;

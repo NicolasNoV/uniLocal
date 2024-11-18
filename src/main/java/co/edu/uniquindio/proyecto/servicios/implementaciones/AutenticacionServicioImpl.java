@@ -26,7 +26,7 @@ import java.util.Optional;
         private final JWTUtils jwtUtils;
 
         @Override
-        public TokenDTO iniciarSesionCliente(LoginDTO loginDTO) throws Exception {
+        public String iniciarSesionCliente(LoginDTO loginDTO) throws Exception {
             Optional<Cliente> clienteOptional = Optional.ofNullable(clienteRepo.findByCorreoElectronico(loginDTO.correoElectronico()));
             if (clienteOptional.isEmpty()) {
                 throw new Exception("El correo no se encuentra registrado");
@@ -43,7 +43,7 @@ import java.util.Optional;
             map.put("rol", "CLIENTE");
             map.put("nombre", cliente.getNombre());
             map.put("id", cliente.getCodigo());
-            return new TokenDTO(jwtUtils.generarToken(cliente.getEmail(), map));
+            return clienteOptional.get().getCodigo();
         }
 
         @Override

@@ -24,8 +24,12 @@ public class SinRolControlador {
     private final ImagenesServicio imagenesServicio;
 
     @PostMapping("/iniciar-sesion-cliente")
-    public ResponseEntity<MensajeDTO<TokenDTO>> iniciarSesionCliente(@Valid @RequestBody LoginDTO loginDTO) throws Exception{
-        return ResponseEntity.ok().body( new MensajeDTO<>(false, autenticacionServicio.iniciarSesionCliente(loginDTO) ) );
+    public ResponseEntity<String> iniciarSesionCliente(@Valid @RequestBody LoginDTO loginDTO) throws Exception {
+        // Obtenemos el código del cliente desde el servicio de autenticación
+        String codigoCliente = autenticacionServicio.iniciarSesionCliente(loginDTO);
+
+        // Retornamos el código del cliente en la respuesta
+        return ResponseEntity.ok(codigoCliente);
     }
     @PostMapping("/iniciar-sesion-admin")
     public ResponseEntity<MensajeDTO<TokenDTO>> iniciarSesionAdmin(@Valid @RequestBody LoginDTO loginDTO) throws Exception{

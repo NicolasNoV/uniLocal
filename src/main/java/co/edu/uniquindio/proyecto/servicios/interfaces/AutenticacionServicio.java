@@ -2,6 +2,6 @@ package co.edu.uniquindio.proyecto.servicios.interfaces;import co.edu.uniquindio
 import co.edu.uniquindio.proyecto.dto.TokenDTO;
 
 public interface AutenticacionServicio {
-    public TokenDTO iniciarSesionCliente(LoginDTO loginDTO) throws Exception;
+    public String iniciarSesionCliente(LoginDTO loginDTO) throws Exception;
     public TokenDTO iniciarSesionAdmin(LoginDTO loginDTO) throws Exception;
 }

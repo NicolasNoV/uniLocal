@@ -25,6 +25,19 @@ public class ClienteServicioImpl implements ClienteServicio {
     private final JWTUtils jwtUtils;
 
     @Override
+    public ClienteDTO cargarPerfil(String codigoCliente) throws Exception{
+        Optional<Cliente> clienteOptional = clienteRepo.findById(codigoCliente);
+        if(clienteOptional.isEmpty()){
+            throw new Exception(("no existe un cliente con el id" + codigoCliente));
+        }
+        Cliente cliente = clienteOptional.get();
+
+        return new ClienteDTO(cliente.getNombre(),cliente.getCorreoElectronico(),cliente.getCiudad(),
+                                cliente.getFotoPerfil());
+
+    }
+
+    @Override
     public String registrarse(RegistroClienteDTO registroClienteDTO) throws Exception {
         List<Negocio> negociosFavorritos = new ArrayList<>();
         List<String> historialBusquedaNombre = new ArrayList<>();
